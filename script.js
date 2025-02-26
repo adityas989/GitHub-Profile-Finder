@@ -1,10 +1,7 @@
 const card = document.querySelectorAll('.card');
 console.log(card);
 const myProfile = document.querySelector(".myprofile");
-// const para = document.createElement("p");
-// para.textContent = "Aditya Singh";
-// card[3].appendChild(para);
-// console.log(card[3])
+
 
 
 const user = "adityas989"
@@ -27,10 +24,6 @@ const displayMyProfile = async () => {
 
     
     console.log(myProfile)
-    // myProfile.textContent = "Aditya singh"
-    // const para = document.createElement("p");
-    // para.textContent = "Aditya Singh";
-    // myProfile.appendChild(para);
     myProfile.innerHTML = `
 
         <h1 > ${data.name} </h1>
