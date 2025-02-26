@@ -68,3 +68,14 @@ h3 {
     aspect-ratio:1;
     border-radius:50%;
 }
+
+.card div img{
+    width:70%;
+    aspect-ratio:1;
+    border-radius:50%;
+}
+main .card{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}

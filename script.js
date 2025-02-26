@@ -1,7 +1,7 @@
 const card = document.querySelectorAll('.card');
 console.log(card);
 const myProfile = document.querySelector(".myprofile");
-
+console.log(card[0]);
 
 
 const user = "adityas989"
@@ -23,7 +23,7 @@ const displayMyProfile = async () => {
     console.log(p);
 
     
-    console.log(myProfile)
+    // console.log(myProfile)
     myProfile.innerHTML = `
 
         <h1 > ${data.name} </h1>
@@ -35,3 +35,33 @@ const displayMyProfile = async () => {
     `
 }
 displayMyProfile();
+
+let t;
+const topProfiles =async () => {
+    await fetch('https://api.github.com/search/users?q=followers:>1000&sort=followers&order=desc')
+    .then(response => response.json())
+    .then(data => {
+    //   console.log(data.items);
+      t = data;
+      return data;
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+// topProfiles()
+
+
+const addTopProfiles = async () => {
+    await topProfiles();
+    console.log(t.items[0])
+    for (let i=0;i<3;i++){
+        console.log(card[i])
+        console.log(t.items[i])
+        card[i].innerHTML = `
+        <div>
+            <img src=${t.items[i].avatar_url} alt="profile pic">
+        </div>
+        <h1> ${t.items[i].login} </h1>
+        `
+    }
+}
+addTopProfiles();
