@@ -83,9 +83,9 @@ const getProfile = async () => {
     searchResultData.innerHTML=`
             <img src=${searchdata.avatar_url} alt='profile pic'>
             <h2>${searchdata.name}</h2>
-            <h3 class="txt"> My Public Repos: </h3>
+            <h3 class="txt"> Public Repos: </h3>
             <h3> ${searchdata.public_repos}</h3>
-            <h3 class="txt"> My Repo Link: </h3>
+            <h3 class="txt"> Repo Link: </h3>
             <h3> ${searchdata.repos_url} </h3>
         `
 }
