@@ -1,7 +1,7 @@
 const card = document.querySelectorAll('.card');
 const myProfile = document.querySelector(".myprofile");
 const searchInfo = document.querySelector(".search input[type='search']");
-
+const searchResultData = document.querySelector(".searchResult");
 
 
 const user = "adityas989"
@@ -22,6 +22,8 @@ const displayMyProfile = async () => {
     const p = await profile();
     console.log(p);
 
+    
+    // console.log(myProfile)
     myProfile.innerHTML = `
 
         <h1 > ${data.name} </h1>
@@ -61,10 +63,29 @@ const addTopProfiles = async () => {
     }
 }
 addTopProfiles();
-
-const getProfile = () => {
+let searchdata
+const getProfile = async () => {
     
-    // const findProfile = searchInfo.className(".searchbar").value;
     const findProfile = searchInfo.value;
-    console.log(findProfile)
+    console.log(findProfile);
+    await fetch(`https://api.github.com/users/${findProfile}`)
+    .then(response => response.json())
+    .then(data => {
+        searchdata = data;
+        console.log(searchdata);
+    })
+    .catch(error => console.error('Error fetching data:', error))
+    
+    if(searchdata.message == 'Not Found'){
+        alert('Invalid Search')
+        return;
+    }
+    searchResultData.innerHTML=`
+            <img src=${searchdata.avatar_url} alt='profile pic'>
+            <h2>${searchdata.name}</h2>
+            <h3 class="txt"> My Public Repos: </h3>
+            <h3> ${searchdata.public_repos}</h3>
+            <h3 class="txt"> My Repo Link: </h3>
+            <h3> ${searchdata.repos_url} </h3>
+        `
 }
